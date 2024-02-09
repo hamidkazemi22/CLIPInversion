@@ -6,7 +6,7 @@ pornography, gender bias, and other potentially unsettling,
 distressing, and/or offensive content for certain readers.**
 
 
-![Inverted Images](figures/cover/main.png)
+![Inverted Images](figures/main.png)
 
 **Installing requirements:**
 
