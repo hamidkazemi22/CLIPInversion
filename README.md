@@ -1,11 +1,11 @@
 [//]: # (# CLIPInversion)
 # What do we learn from inverting CLIP models?
-**<span style="color:red">Warning</span>: This paper contains sexually explicit images and
+**<span style="color:white">Warning</span>: This paper contains sexually explicit images and
 language, offensive visuals and terminology, discussions on
 pornography, gender bias, and other potentially unsettling,
 distressing, and/or offensive content for certain readers.**
 
-
+[Paper](https://example.com/link1) | [HuggingFace Space](https://example.com/link2)
 ![Inverted Images](figures/main.png)
 
 **Installing requirements:**
@@ -27,6 +27,6 @@ python invert.py \
     --con 0.4 \  # ColorJitter Augmentation contrast degree.
     --sat 0.4 \  # ColorJitter Augmentation saturation degree.
     --save_every 100 \  # Frequency at which to save intermediate results.
-    --print_every 100  # Frequency at which to print intermediate information.
-
+    --print_every 100 \  # Frequency at which to print intermediate information.
+    --model_name ViT-B/16 # ['RN50', 'RN101', 'RN50x4', 'RN50x16', 'ViT-B/32', 'ViT-B/16']
 ```
