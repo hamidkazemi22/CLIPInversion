@@ -31,9 +31,9 @@ css = """
 
 # Most likely human generated, #most likely AI written
 
-prompt = '''A beautiful landscape'''
+prompt = '''An astronaut exploring an alien planet, discovering a mysterious ancient artifact" for different models.'''
 print(prompt)
-default_image = Image.open('figures/default_image.png')
+# default_image = Image.open('figures/astronaut.png')
 with gr.Blocks(css=css,
                theme=gr.themes.Default(font=[gr.themes.GoogleFont("Inconsolata"), "Arial", "sans-serif"])) as app:
     with gr.Row():
@@ -41,10 +41,7 @@ with gr.Blocks(css=css,
             gr.HTML("<p><h1>What do we learn from inverting CLIP models?</h1></p>")
         with gr.Column(scale=3):
             gr.HTML(
-                "<p>This paper contains sexually explicit images and language, "
-                "offensive visuals and terminology, discussions on pornography, "
-                "gender bias, and other potentially unsettling, distressing, "
-                "and/or offensive content for certain readers.</p>")
+                "<p>This space may generate sexually explicit and NSFW (Not Safe For Work) images.</p>")
         with gr.Column(scale=1):
             gr.HTML("""
             <p>
@@ -64,7 +61,8 @@ with gr.Blocks(css=css,
         gr.HTML("<p><h1>Generated Image:</h1></p>")
     with gr.Column(scale=1):
         # output_text = gr.Textbox(label="Prediction", value="Most likely AI-Generated")
-        output_text = gr.Image(type='pil', show_label=False, width=224, height=224, default=default_image)
+        # output_text = gr.Image(type='pil', show_label=False, width=224, height=224, value=default_image)
+        output_text = gr.Image(type='pil', show_label=False, width=224, height=224)
     with gr.Row():
         gr.HTML("<p><p><p>")
     with gr.Row():

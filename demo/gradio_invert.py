@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser(description='inverting clip!')
 parser.add_argument('--num_iters', default=3400, type=int)
 parser.add_argument('--save_every', default=200, type=int)
 parser.add_argument('--print_every', default=1, type=int)
-parser.add_argument('--batch_size', default=13, type=int)
+parser.add_argument('--batch_size', default=1, type=int)
 parser.add_argument('-p', '--prompt', action='append', type=str, default=[])
 parser.add_argument('-e', '--extra_prompts', action='append', type=str, default=[])
 parser.add_argument('--lr', default=0.1, type=float)
@@ -25,9 +25,9 @@ parser.add_argument('--color', action='store_true')
 parser.add_argument('--img_size', default=64, type=int)
 parser.add_argument('--eps', default=2 / 255)
 parser.add_argument('--optimizer', default='adam')
-parser.add_argument('--bri', type=float, default=0.4)
-parser.add_argument('--con', type=float, default=0.4)
-parser.add_argument('--sat', type=float, default=0.4)
+parser.add_argument('--bri', type=float, default=0.1)
+parser.add_argument('--con', type=float, default=0.1)
+parser.add_argument('--sat', type=float, default=0.1)
 parser.add_argument('--l1', type=float, default=0.)
 parser.add_argument('--trial', type=int, default=1)
 parser.add_argument('--cg_std', type=float, default=0.)
@@ -46,10 +46,10 @@ for model_name in model_names:
     model, preprocess = clip.load(model_name, device)
     model.eval()
     model = model.float()
-    model = model.cuda()
+    model = model.to(device)
     models.append(model)
 
-normalizer = Normalization([0.48145466, 0.4578275, 0.40821073], [0.26862954, 0.26130258, 0.27577711]).cuda()
+normalizer = Normalization([0.48145466, 0.4578275, 0.40821073], [0.26862954, 0.26130258, 0.27577711]).to(device)
 
 
 def run(prompt, tv):
@@ -59,7 +59,7 @@ def run(prompt, tv):
 
     for model in models:
         freeze_module(model)
-    image = torch.rand((1, 3, args.img_size, args.img_size)).cuda()
+    image = torch.rand((1, 3, args.img_size, args.img_size)).to(device)
     image.requires_grad_()
 
     def get_optimizer(image):
@@ -103,7 +103,7 @@ def run(prompt, tv):
         scale = Scale(model.visual.input_resolution)
         image_input = scale(image_input)
         image_input = color_jitter(image_input)
-        epsilon = torch.rand_like(image_input) * 0.03
+        epsilon = torch.rand_like(image_input) * 0.007
         image_input = image_input + epsilon
         image_input = normalizer(image_input)
         image_features = model.encode_image(image_input)
