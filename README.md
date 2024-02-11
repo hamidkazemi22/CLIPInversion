@@ -10,6 +10,7 @@ distressing, and/or offensive content for certain readers.**
 
 **Installing requirements:**
 
+
 ```bash
 pip install requirements.txt
 ```
