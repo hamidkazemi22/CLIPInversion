@@ -5,7 +5,7 @@ language, offensive visuals and terminology, discussions on
 pornography, gender bias, and other potentially unsettling,
 distressing, and/or offensive content for certain readers.**
 
-[Paper]([https://example.com/link1](https://arxiv.org/abs/2403.02580))
+[Paper](https://arxiv.org/abs/2403.02580)
 ![Inverted Images](figures/main.png)
 
 **Installing requirements:**
